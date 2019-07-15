@@ -21,4 +21,6 @@ networks:
 
 volumes:
   onlyoffice_data:
+    external: true
   onlyoffice_log:
+    external: true
