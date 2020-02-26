@@ -12,15 +12,9 @@ services:
       - '80'
       - '443'
     volumes:
-      - onlyoffice_data:/var/www/onlyoffice/Data
-      - onlyoffice_log:/var/log/onlyoffice
+      - /mnt/volumes/onlyoffice_data/data:/var/www/onlyoffice/Data
+      - /mnt/volumes/onlyoffice_log/data:/var/log/onlyoffice
 
 networks:
   reverse-proxy:
-    external: true
-
-volumes:
-  onlyoffice_data:
-    external: true
-  onlyoffice_log:
     external: true
