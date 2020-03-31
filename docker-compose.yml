@@ -5,7 +5,6 @@ services:
   onlyoffice-document-server:
     container_name: onlyoffice-document-server
     image: onlyoffice/documentserver:latest
-    restart: always
     networks:
       - reverse-proxy
     expose:
