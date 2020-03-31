@@ -5,7 +5,7 @@ SCRIPT=$(readlink -f $0)
 SCRIPTPATH=$(dirname $SCRIPT)
 STACK=$(basename "$SCRIPTPATH")
 
-for VOLUME in onlyoffice_data onlyoffice_log
+for VOLUME in $(awk NF $SCRIPTPATH/volume_list | tr -d "[:blank:]")
 do
     systemctl enable mnt-cinder-volume@${VOLUME}.service
 done
@@ -18,7 +18,7 @@ Wants=network-online.target docker.service
 Requires=docker.socket
 EOF
 
-for VOLUME in onlyoffice_data onlyoffice_log
+for VOLUME in $(awk NF $SCRIPTPATH/volume_list | tr -d "[:blank:]")
 do
     cat << EOF >> /etc/systemd/system/${STACK}.service
 After=mnt-cinder-volume@${VOLUME}.service
@@ -39,4 +39,4 @@ ExecStart=$SCRIPTPATH/start.sh
 WantedBy=multi-user.target
 EOF
 systemctl daemon-reload
-systemctl enable docker-onlyoffice-stack.service
+systemctl enable ${STACK}.service
