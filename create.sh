@@ -5,4 +5,4 @@ SCRIPT=$(readlink -f $0)
 SCRIPTPATH=$(dirname $SCRIPT)
 
 cd $SCRIPTPATH
-sudo docker-compose up -d
+sudo docker-compose up --no-start
